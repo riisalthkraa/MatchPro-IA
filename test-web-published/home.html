@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MatchPro IA - Tests & Documentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 3rem;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(255,255,255,0.2);
+            border-radius: 999px;
+            margin: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .card-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .card-link {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: opacity 0.3s ease;
+        }
+
+        .card-link:hover {
+            opacity: 0.9;
+        }
+
+        .stats {
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            color: white;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .stat {
+            padding: 1rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .footer {
+            text-align: center;
+            color: white;
+            margin-top: 3rem;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 MatchPro IA Multi-Provider</h1>
+            <p>Tests & Documentation</p>
+            <div>
+                <span class="badge">✅ 187 Tests Créés</span>
+                <span class="badge">✔️ 139 Tests Exécutés</span>
+                <span class="badge">💯 100 Tests Réussis</span>
+                <span class="badge">📚 8 Modules</span>
+            </div>
+        </div>
+
+        <div class="cards">
+            <div class="card" onclick="window.location.href='index.html'">
+                <div class="card-icon">🧪</div>
+                <h2 class="card-title">Rapport de Tests</h2>
+                <p class="card-description">
+                    Consultez les résultats de 139 tests exécutés sur 187 tests créés.
+                    100 tests réussis! Couvre Services IA, Routers tRPC, Cache Redis et Ollama.
+                </p>
+                <a href="index.html" class="card-link">Voir les tests →</a>
+            </div>
+
+            <div class="card" onclick="window.location.href='docs/index.html'">
+                <div class="card-icon">📚</div>
+                <h2 class="card-title">Documentation API</h2>
+                <p class="card-description">
+                    Documentation complète de 8 modules générée avec TypeDoc :
+                    Services IA, Routers tRPC, Cache Redis, et Ollama Installer.
+                </p>
+                <a href="docs/index.html" class="card-link">Voir la doc →</a>
+            </div>
+
+            <div class="card" onclick="window.location.href='README.md'">
+                <div class="card-icon">📖</div>
+                <h2 class="card-title">Guide d'utilisation</h2>
+                <p class="card-description">
+                    Instructions complètes pour utiliser les tests, générer les rapports,
+                    et publier la documentation sur le web.
+                </p>
+                <a href="README.md" class="card-link">Lire le guide →</a>
+            </div>
+        </div>
+
+        <div class="stats">
+            <h2 style="margin-bottom: 1rem;">📊 Statistiques</h2>
+            <div class="stats-grid">
+                <div class="stat">
+                    <div class="stat-number">187</div>
+                    <div class="stat-label">Tests Créés</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">139</div>
+                    <div class="stat-label">Tests Exécutés</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">100</div>
+                    <div class="stat-label">Tests Réussis</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">72%</div>
+                    <div class="stat-label">Taux de Réussite</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">8</div>
+                    <div class="stat-label">Modules Documentés</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><strong>MatchPro IA v1.8.0</strong> - AI Multi-Provider & Matching System</p>
+            <p>Créé par VIEY David | © 2025</p>
+        </div>
+    </div>
+</body>
+</html>

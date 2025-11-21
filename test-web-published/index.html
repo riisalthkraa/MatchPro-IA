@@ -1,0 +1,751 @@
+<html><head><meta charset="utf-8"/><title>MatchPro IA - Rapport de Tests</title><style type="text/css">:root {
+  --text-primary: #111;
+  --text-secondary: #4f4f4f;
+  --success: #006633;
+  --success-bright: #80ffbf;
+  --danger: #cc071e;
+  --danger-bright: #fbdfe0;
+  --warning: #995c00;
+  --warning-bright: #ffeea8;
+  --panel: #eee;
+  --border: #949494;
+  --disabled: #6b6b6b;
+}
+
+html,
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  color: var(--text-primary);
+}
+body {
+  padding: 2rem 1rem;
+}
+.jesthtml-content {
+  margin: 0 auto;
+  max-width: 70rem;
+}
+header {
+  display: flex;
+  align-items: center;
+}
+#title {
+  margin: 0;
+  flex-grow: 1;
+}
+#logo {
+  height: 4rem;
+}
+#timestamp {
+  color: var(--text-secondary);
+  margin-top: 0.5rem;
+}
+
+#metadata-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.additional-information-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+}
+
+/** SUMMARY */
+#summary {
+  color: var(--text-primary);
+  display: flex;
+  font-family: monospace;
+  font-size: 1rem;
+}
+#summary > div {
+  margin-right: 0.5rem;
+  background: var(--panel);
+  padding: 1rem;
+  min-width: 15rem;
+}
+#summary > div:last-child {
+  margin-right: 0;
+}
+@media only screen and (max-width: 720px) {
+  #summary {
+    flex-direction: column;
+  }
+  #summary > div {
+    margin-right: 0;
+    margin-top: 1rem;
+  }
+  #summary > div:first-child {
+    margin-top: 0;
+  }
+}
+
+.summary-total {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+.summary-passed {
+  color: var(--success);
+  border-left: 0.4rem solid var(--success);
+  padding-left: 0.5rem;
+  margin-bottom: 0.15rem;
+}
+.summary-failed,
+.summary-obsolete-snapshots {
+  color: var(--danger);
+  border-left: 0.4rem solid var(--danger);
+  padding-left: 0.5rem;
+  margin-bottom: 0.15rem;
+}
+.summary-pending {
+  color: var(--warning);
+  border-left: 0.4rem solid var(--warning);
+  padding-left: 0.5rem;
+  margin-bottom: 0.15rem;
+}
+.summary-empty {
+  color: var(--disabled);
+  border-left: 0.4rem solid var(--disabled);
+  margin-bottom: 0.15rem;
+}
+
+.test-result {
+  padding: 1rem;
+  margin-bottom: 0.25rem;
+}
+.test-result:last-child {
+  border: 0;
+}
+.test-result.passed {
+  background-color: var(--success-bright);
+  color: var(--success);
+}
+.test-result.failed {
+  background-color: var(--danger-bright);
+  color: var(--danger);
+}
+.test-result.pending {
+  background-color: var(--warning-bright);
+  color: var(--warning);
+}
+
+.test-info {
+  display: flex;
+  justify-content: space-between;
+}
+.test-suitename {
+  width: 20%;
+  text-align: left;
+  font-weight: bold;
+  word-break: break-word;
+}
+.test-title {
+  width: 40%;
+  text-align: left;
+  font-style: italic;
+}
+.test-status {
+  width: 20%;
+  text-align: right;
+}
+.test-duration {
+  width: 10%;
+  text-align: right;
+  font-size: 0.85rem;
+}
+
+.failureMessages {
+  padding: 0 1rem;
+  margin-top: 1rem;
+  border-top: 1px dashed var(--danger);
+}
+.failureMessages.suiteFailure {
+  border-top: none;
+}
+.failureMsg {
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+
+.suite-container {
+  margin-bottom: 1rem;
+}
+.suite-info {
+  padding: 1rem;
+  background-color: var(--panel);
+  color: var(--text-secondary);
+  border: 0.15rem solid;
+  border-color: var(--panel);
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+.suite-info:hover {
+  border-color: var(--border);
+  cursor: pointer;
+}
+.suite-info .suite-path {
+  word-break: break-all;
+  flex-grow: 1;
+  font-family: monospace;
+  font-size: 1rem;
+}
+.suite-info .suite-time {
+  margin-left: 1rem;
+  padding: 0.2rem 0.3rem;
+  font-size: 0.85rem;
+}
+.suite-info .suite-time.warn {
+  background-color: var(--danger);
+  color: #fff;
+}
+.suite-info:before {
+  content: "\2303";
+  display: inline-block;
+  margin-right: 1rem;
+  transform: rotate(180deg) translateY(0.15rem);
+}
+.suite-container[open] .suite-info:before {
+  transform: rotate(0deg) translateY(0.15rem);
+}
+
+/* CONSOLE LOGS */
+.suite-consolelog {
+  margin-bottom: 0.25rem;
+  padding: 1rem;
+  background-color: var(--panel);
+}
+.suite-consolelog-header {
+  font-weight: bold;
+}
+.suite-consolelog-item {
+  padding: 0.5rem;
+}
+.suite-consolelog-item pre {
+  margin: 0.5rem 0;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+.suite-consolelog-item-origin {
+  color: var(--text-secondary);
+  font-weight: bold;
+}
+.suite-consolelog-item-message {
+  color: var(--text-primary);
+  font-size: 1rem;
+  padding: 0 0.5rem;
+}
+
+/* OBSOLETE SNAPSHOTS */
+.suite-obsolete-snapshots {
+  margin-bottom: 0.25rem;
+  padding: 1rem;
+  background-color: var(--danger-bright);
+  color: var(--danger);
+}
+.suite-obsolete-snapshots-header {
+  font-weight: bold;
+}
+.suite-obsolete-snapshots-item {
+  padding: 0.5rem;
+}
+.suite-obsolete-snapshots-item pre {
+  margin: 0.5rem 0;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+.suite-obsolete-snapshots-item-message {
+  color: var(--text-primary);
+  font-size: 1rem;
+  padding: 0 0.5rem;
+}
+</style></head><body><main class="jesthtml-content"><header><h1 id="title">MatchPro IA - Rapport de Tests</h1></header><section id="metadata-container"><div id="timestamp">Started: 2025-11-20 04:59:42</div><div id="summary"><div id="suite-summary"><div class="summary-total">Suites (8)</div><div class="summary-passed ">4 passed</div><div class="summary-failed ">4 failed</div><div class="summary-pending  summary-empty">0 pending</div></div><div id="test-summary"><div class="summary-total">Tests (139)</div><div class="summary-passed ">100 passed</div><div class="summary-failed ">39 failed</div><div class="summary-pending  summary-empty">0 pending</div></div></div></section><details id="suite-1" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\redis-cache.test.ts</div><div class="suite-time warn">13.892s</div></summary><div class="suite-tests"><div class="test-result failed"><div class="test-info"><div class="test-suitename">Redis Cache Service &gt; get</div><div class="test-title">should return parsed data when key exists</div><div class="test-status">failed</div><div class="test-duration">0.053s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+Expected: "test-key"
+
+Number of calls: 0
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\redis-cache.test.ts:41:29)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">Redis Cache Service &gt; get</div><div class="test-title">should handle complex objects</div><div class="test-status">failed</div><div class="test-duration">0.013s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(received).toEqual(expected) // deep equality
+
+Expected: {"metadata": {"created": "2025-01-01"}, "scores": [95, 87, 92], "user": {"id": 1, "name": "Jane"}}
+Received: null
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\redis-cache.test.ts:71:22)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">Redis Cache Service &gt; get</div><div class="test-title">should handle arrays</div><div class="test-status">failed</div><div class="test-duration">0.012s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(received).toEqual(expected) // deep equality
+
+Expected: [1, 2, 3, 4, 5]
+Received: null
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\redis-cache.test.ts:80:22)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">Redis Cache Service &gt; set</div><div class="test-title">should set data with default TTL</div><div class="test-status">failed</div><div class="test-duration">0.006s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+Expected: "test-key", 600, "{\"name\":\"Alice\"}"
+
+Number of calls: 0
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\redis-cache.test.ts:94:31)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">Redis Cache Service &gt; set</div><div class="test-title">should set data with custom TTL</div><div class="test-status">failed</div><div class="test-duration">0.003s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+Expected: "test-key", 3600, "{\"name\":\"Bob\"}"
+
+Number of calls: 0
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\redis-cache.test.ts:106:31)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">Redis Cache Service &gt; set</div><div class="test-title">should stringify complex objects</div><div class="test-status">failed</div><div class="test-duration">0.002s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+Expected: "complex-key", 600, "{\"nested\":{\"deep\":{\"value\":42}},\"array\":[1,2,3]}"
+
+Number of calls: 0
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\redis-cache.test.ts:134:31)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">Redis Cache Service &gt; set</div><div class="test-title">should handle null values</div><div class="test-status">failed</div><div class="test-duration">0.002s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+Expected: "null-key", 600, "null"
+
+Number of calls: 0
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\redis-cache.test.ts:146:31)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">Redis Cache Service &gt; del</div><div class="test-title">should delete a key</div><div class="test-status">failed</div><div class="test-duration">0.002s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+Expected: "test-key"
+
+Number of calls: 0
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\redis-cache.test.ts:164:29)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">Redis Cache Service &gt; del</div><div class="test-title">should handle non-existent keys gracefully</div><div class="test-status">failed</div><div class="test-duration">0.002s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+Expected: "non-existent-key"
+
+Number of calls: 0
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\redis-cache.test.ts:181:29)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">Redis Cache Service &gt; delPattern</div><div class="test-title">should delete keys matching pattern</div><div class="test-status">failed</div><div class="test-duration">0.052s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+Expected: "user:*"
+
+Number of calls: 0
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\redis-cache.test.ts:196:30)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">Redis Cache Service &gt; delPattern</div><div class="test-title">should do nothing when no keys match</div><div class="test-status">failed</div><div class="test-duration">0.012s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+Expected: "nonexistent:*"
+
+Number of calls: 0
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\redis-cache.test.ts:205:30)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">Redis Cache Service &gt; delPattern</div><div class="test-title">should handle complex patterns</div><div class="test-status">failed</div><div class="test-duration">0.004s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+Expected: "candidats:list:*"
+
+Number of calls: 0
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\redis-cache.test.ts:224:30)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">Redis Cache Service &gt; flush</div><div class="test-title">should flush all data from database</div><div class="test-status">failed</div><div class="test-duration">0.002s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(jest.fn()).toHaveBeenCalled()
+
+Expected number of calls: &gt;= 1
+Received number of calls:    0
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\redis-cache.test.ts:242:33)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">Redis Cache Service &gt; Integration</div><div class="test-title">should handle get-set-get cycle</div><div class="test-status">failed</div><div class="test-duration">0.003s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(received).toEqual(expected) // deep equality
+
+Expected: {"name": "Charlie", "userId": 123}
+Received: null
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\redis-cache.test.ts:269:22)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">Redis Cache Service &gt; TTL Management</div><div class="test-title">should use 600s TTL by default</div><div class="test-status">failed</div><div class="test-duration">0.003s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+Expected: "default-ttl-key", 600, Any&lt;String&gt;
+
+Number of calls: 0
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\redis-cache.test.ts:310:31)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">Redis Cache Service &gt; TTL Management</div><div class="test-title">should accept custom TTL values</div><div class="test-status">failed</div><div class="test-duration">0.002s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+Expected: "short-ttl-key", 60, Any&lt;String&gt;
+
+Number of calls: 0
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\redis-cache.test.ts:323:31)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">Redis Cache Service &gt; TTL Management</div><div class="test-title">should handle zero TTL</div><div class="test-status">failed</div><div class="test-duration">0.003s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+Expected: "zero-ttl-key", 0, Any&lt;String&gt;
+
+Number of calls: 0
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\redis-cache.test.ts:332:31)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre></div></div></div><div class="suite-consolelog"><div class="suite-consolelog-header">Console Log</div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at Object.warn [as delPattern] (C:\Users\RK\Desktop\MATCHPRO IA DEV\api\src\services\redis-cache.ts:58:15)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\redis-cache.test.ts:194:7)</pre><pre class="suite-consolelog-item-message">Cache delPattern failed: TypeError: Cannot read properties of undefined (reading 'length')
+    at Object.length [as delPattern] (C:\Users\RK\Desktop\MATCHPRO IA DEV\api\src\services\redis-cache.ts:54:16)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\redis-cache.test.ts:194:7)</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at Object.warn [as delPattern] (C:\Users\RK\Desktop\MATCHPRO IA DEV\api\src\services\redis-cache.ts:58:15)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\redis-cache.test.ts:203:7)</pre><pre class="suite-consolelog-item-message">Cache delPattern failed: TypeError: Cannot read properties of undefined (reading 'length')
+    at Object.length [as delPattern] (C:\Users\RK\Desktop\MATCHPRO IA DEV\api\src\services\redis-cache.ts:54:16)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\redis-cache.test.ts:203:7)</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at Object.warn [as delPattern] (C:\Users\RK\Desktop\MATCHPRO IA DEV\api\src\services\redis-cache.ts:58:15)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\redis-cache.test.ts:222:7)</pre><pre class="suite-consolelog-item-message">Cache delPattern failed: TypeError: Cannot read properties of undefined (reading 'length')
+    at Object.length [as delPattern] (C:\Users\RK\Desktop\MATCHPRO IA DEV\api\src\services\redis-cache.ts:54:16)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\redis-cache.test.ts:222:7)</pre></div></div></details><details id="suite-2" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\python-client.test.ts</div><div class="suite-time warn">14.027s</div></summary><div class="suite-tests"><div class="test-result failed"><div class="test-info"><div class="test-suitename">Python Client &gt; parseCV</div><div class="test-title">should throw error when parser service fails</div><div class="test-status">failed</div><div class="test-duration">0.012s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(received).rejects.toThrow()
+
+Received promise resolved instead of rejected
+Resolved to value: {"email": "jean.dupont@example.com", "nom": "Dupont", "prenom": "Jean"}
+    at expect (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\expect@30.2.0\node_modules\expect\build\index.js:2116:15)
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\python-client.test.ts:77:13)
+    at Promise.finally.completed (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1557:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1497:10)
+    at _callCircusTest (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1007:40)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at _runTest (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:947:3)
+    at C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:849:7
+    at _runTestsForDescribeBlock (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:862:11)
+    at _runTestsForDescribeBlock (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:857:11)
+    at _runTestsForDescribeBlock (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:857:11)
+    at run (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:761:3)
+    at runAndTransformResultsToJestFormat (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1918:21)
+    at jestAdapter (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\runner.js:101:19)
+    at runTestInternal (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-runner@30.2.0\node_modules\jest-runner\build\testWorker.js:275:16)
+    at runTest (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-runner@30.2.0\node_modules\jest-runner\build\testWorker.js:343:7)
+    at Object.worker (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-runner@30.2.0\node_modules\jest-runner\build\testWorker.js:497:12)</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">Python Client &gt; extractPDF</div><div class="test-title">should extract text from PDF</div><div class="test-status">failed</div><div class="test-duration">0.004s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+Expected: "/extract/pdf", {"data": "base64encodedpdf"}
+
+Number of calls: 0
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\python-client.test.ts:102:24)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">Python Client &gt; extractPDF</div><div class="test-title">should throw error on PDF extraction failure</div><div class="test-status">failed</div><div class="test-duration">0.002s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(received).rejects.toThrow()
+
+Received promise resolved instead of rejected
+Resolved to value: undefined
+    at expect (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\expect@30.2.0\node_modules\expect\build\index.js:2116:15)
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\python-client.test.ts:119:13)
+    at Promise.finally.completed (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1557:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1497:10)
+    at _callCircusTest (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1007:40)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at _runTest (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:947:3)
+    at C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:849:7
+    at _runTestsForDescribeBlock (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:862:11)
+    at _runTestsForDescribeBlock (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:857:11)
+    at _runTestsForDescribeBlock (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:857:11)
+    at run (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:761:3)
+    at runAndTransformResultsToJestFormat (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1918:21)
+    at jestAdapter (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\runner.js:101:19)
+    at runTestInternal (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-runner@30.2.0\node_modules\jest-runner\build\testWorker.js:275:16)
+    at runTest (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-runner@30.2.0\node_modules\jest-runner\build\testWorker.js:343:7)
+    at Object.worker (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-runner@30.2.0\node_modules\jest-runner\build\testWorker.js:497:12)</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">Python Client &gt; extractDOCX</div><div class="test-title">should extract text from DOCX</div><div class="test-status">failed</div><div class="test-duration">0.003s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+Expected: "/extract/docx", {"data": "base64encodeddocx"}
+
+Number of calls: 0
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\python-client.test.ts:140:24)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">Python Client &gt; extractDOCX</div><div class="test-title">should throw error on DOCX extraction failure</div><div class="test-status">failed</div><div class="test-duration">0.003s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(received).rejects.toThrow()
+
+Received promise resolved instead of rejected
+Resolved to value: undefined
+    at expect (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\expect@30.2.0\node_modules\expect\build\index.js:2116:15)
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\python-client.test.ts:157:13)
+    at Promise.finally.completed (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1557:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1497:10)
+    at _callCircusTest (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1007:40)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at _runTest (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:947:3)
+    at C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:849:7
+    at _runTestsForDescribeBlock (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:862:11)
+    at _runTestsForDescribeBlock (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:857:11)
+    at _runTestsForDescribeBlock (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:857:11)
+    at run (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:761:3)
+    at runAndTransformResultsToJestFormat (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1918:21)
+    at jestAdapter (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\runner.js:101:19)
+    at runTestInternal (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-runner@30.2.0\node_modules\jest-runner\build\testWorker.js:275:16)
+    at runTest (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-runner@30.2.0\node_modules\jest-runner\build\testWorker.js:343:7)
+    at Object.worker (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-runner@30.2.0\node_modules\jest-runner\build\testWorker.js:497:12)</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">Python Client &gt; ocr</div><div class="test-title">should extract text from image via OCR</div><div class="test-status">failed</div><div class="test-duration">0.003s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+Expected: "/extract/ocr", {"image": "base64image"}
+
+Number of calls: 0
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\python-client.test.ts:178:24)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">Python Client &gt; ocr</div><div class="test-title">should throw error on OCR failure</div><div class="test-status">failed</div><div class="test-duration">0.002s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(received).rejects.toThrow()
+
+Received promise resolved instead of rejected
+Resolved to value: undefined
+    at expect (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\expect@30.2.0\node_modules\expect\build\index.js:2116:15)
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\python-client.test.ts:195:13)
+    at Promise.finally.completed (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1557:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1497:10)
+    at _callCircusTest (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1007:40)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at _runTest (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:947:3)
+    at C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:849:7
+    at _runTestsForDescribeBlock (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:862:11)
+    at _runTestsForDescribeBlock (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:857:11)
+    at _runTestsForDescribeBlock (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:857:11)
+    at run (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:761:3)
+    at runAndTransformResultsToJestFormat (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1918:21)
+    at jestAdapter (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\runner.js:101:19)
+    at runTestInternal (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-runner@30.2.0\node_modules\jest-runner\build\testWorker.js:275:16)
+    at runTest (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-runner@30.2.0\node_modules\jest-runner\build\testWorker.js:343:7)
+    at Object.worker (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-runner@30.2.0\node_modules\jest-runner\build\testWorker.js:497:12)</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">Python Client &gt; matchCandidates</div><div class="test-title">should match candidates to job offer</div><div class="test-status">failed</div><div class="test-duration">0.004s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+Expected: "/match", {"candidats": [{"id": 1, "nom": "Dupont"}, {"id": 2, "nom": "Martin"}], "offre": {"id": 1, "titre": "Développeur React"}}
+
+Number of calls: 0
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\python-client.test.ts:231:24)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">Python Client &gt; matchCandidates</div><div class="test-title">should throw error when matching service fails</div><div class="test-status">failed</div><div class="test-duration">0.006s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(received).rejects.toThrow()
+
+Received promise resolved instead of rejected
+Resolved to value: {"email": "jean.dupont@example.com", "nom": "Dupont", "prenom": "Jean"}
+    at expect (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\expect@30.2.0\node_modules\expect\build\index.js:2116:15)
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\python-client.test.ts:251:13)
+    at Promise.finally.completed (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1557:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1497:10)
+    at _callCircusTest (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1007:40)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at _runTest (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:947:3)
+    at C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:849:7
+    at _runTestsForDescribeBlock (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:862:11)
+    at _runTestsForDescribeBlock (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:857:11)
+    at _runTestsForDescribeBlock (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:857:11)
+    at run (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:761:3)
+    at runAndTransformResultsToJestFormat (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1918:21)
+    at jestAdapter (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\runner.js:101:19)
+    at runTestInternal (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-runner@30.2.0\node_modules\jest-runner\build\testWorker.js:275:16)
+    at runTest (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-runner@30.2.0\node_modules\jest-runner\build\testWorker.js:343:7)
+    at Object.worker (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-runner@30.2.0\node_modules\jest-runner\build\testWorker.js:497:12)</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">Python Client &gt; predictSalary</div><div class="test-title">should predict salary based on profile</div><div class="test-status">failed</div><div class="test-duration">0.006s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+Expected: "/predict-salary", {"competences": ["React", "TypeScript"], "experience": 3, "formation": "Master"}
+
+Number of calls: 0
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\python-client.test.ts:285:24)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">Python Client &gt; predictSalary</div><div class="test-title">should throw error when salary prediction fails</div><div class="test-status">failed</div><div class="test-duration">0.002s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(received).rejects.toThrow()
+
+Received promise resolved instead of rejected
+Resolved to value: {"email": "jean.dupont@example.com", "nom": "Dupont", "prenom": "Jean"}
+    at expect (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\expect@30.2.0\node_modules\expect\build\index.js:2116:15)
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\python-client.test.ts:303:13)
+    at Promise.finally.completed (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1557:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1497:10)
+    at _callCircusTest (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1007:40)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at _runTest (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:947:3)
+    at C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:849:7
+    at _runTestsForDescribeBlock (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:862:11)
+    at _runTestsForDescribeBlock (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:857:11)
+    at _runTestsForDescribeBlock (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:857:11)
+    at run (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:761:3)
+    at runAndTransformResultsToJestFormat (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1918:21)
+    at jestAdapter (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\runner.js:101:19)
+    at runTestInternal (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-runner@30.2.0\node_modules\jest-runner\build\testWorker.js:275:16)
+    at runTest (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-runner@30.2.0\node_modules\jest-runner\build\testWorker.js:343:7)
+    at Object.worker (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-runner@30.2.0\node_modules\jest-runner\build\testWorker.js:497:12)</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">Python Client &gt; predictTurnover</div><div class="test-title">should predict employee turnover risk</div><div class="test-status">failed</div><div class="test-duration">0.002s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+Expected: "/predict-turnover", {"age": 28, "anciennete": 2, "satisfaction": 8}
+
+Number of calls: 0
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\python-client.test.ts:333:24)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">Python Client &gt; predictTurnover</div><div class="test-title">should throw error when turnover prediction fails</div><div class="test-status">failed</div><div class="test-duration">0.002s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(received).rejects.toThrow()
+
+Received promise resolved instead of rejected
+Resolved to value: {"email": "jean.dupont@example.com", "nom": "Dupont", "prenom": "Jean"}
+    at expect (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\expect@30.2.0\node_modules\expect\build\index.js:2116:15)
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\python-client.test.ts:351:13)
+    at Promise.finally.completed (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1557:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1497:10)
+    at _callCircusTest (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1007:40)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at _runTest (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:947:3)
+    at C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:849:7
+    at _runTestsForDescribeBlock (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:862:11)
+    at _runTestsForDescribeBlock (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:857:11)
+    at _runTestsForDescribeBlock (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:857:11)
+    at run (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:761:3)
+    at runAndTransformResultsToJestFormat (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1918:21)
+    at jestAdapter (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\runner.js:101:19)
+    at runTestInternal (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-runner@30.2.0\node_modules\jest-runner\build\testWorker.js:275:16)
+    at runTest (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-runner@30.2.0\node_modules\jest-runner\build\testWorker.js:343:7)
+    at Object.worker (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-runner@30.2.0\node_modules\jest-runner\build\testWorker.js:497:12)</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">Python Client &gt; healthCheck</div><div class="test-title">should return false for unhealthy services</div><div class="test-status">failed</div><div class="test-duration">0.015s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(received).toEqual(expected) // deep equality
+
+- Expected  - 1
++ Received  + 1
+
+  Object {
+-   "matching": false,
++   "matching": true,
+    "parser": true,
+    "predictive": true,
+  }
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\python-client.test.ts:396:22)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">Python Client &gt; healthCheck</div><div class="test-title">should handle all services down</div><div class="test-status">failed</div><div class="test-duration">0.003s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(received).toEqual(expected) // deep equality
+
+- Expected  - 3
++ Received  + 3
+
+  Object {
+-   "matching": false,
+-   "parser": false,
+-   "predictive": false,
++   "matching": true,
++   "parser": true,
++   "predictive": true,
+  }
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\python-client.test.ts:415:22)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">Python Client &gt; Configuration</div><div class="test-title">should configure parser client with correct timeout</div><div class="test-status">failed</div><div class="test-duration">0.014s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+Expected: ObjectContaining {"baseURL": "http://localhost:8001", "timeout": 30000}
+
+Number of calls: 0
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\python-client.test.ts:436:26)
+    at Promise.finally.completed (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1557:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1497:10)
+    at _callCircusTest (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1007:40)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at _runTest (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:947:3)
+    at C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:849:7
+    at _runTestsForDescribeBlock (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:862:11)
+    at _runTestsForDescribeBlock (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:857:11)
+    at _runTestsForDescribeBlock (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:857:11)
+    at run (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:761:3)
+    at runAndTransformResultsToJestFormat (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1918:21)
+    at jestAdapter (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\runner.js:101:19)
+    at runTestInternal (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-runner@30.2.0\node_modules\jest-runner\build\testWorker.js:275:16)
+    at runTest (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-runner@30.2.0\node_modules\jest-runner\build\testWorker.js:343:7)
+    at Object.worker (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-runner@30.2.0\node_modules\jest-runner\build\testWorker.js:497:12)</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">Python Client &gt; Configuration</div><div class="test-title">should configure matching client with longer timeout</div><div class="test-status">failed</div><div class="test-duration">0.008s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+Expected: ObjectContaining {"baseURL": "http://localhost:8002", "timeout": 60000}
+
+Number of calls: 0
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\python-client.test.ts:451:26)
+    at Promise.finally.completed (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1557:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1497:10)
+    at _callCircusTest (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1007:40)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at _runTest (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:947:3)
+    at C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:849:7
+    at _runTestsForDescribeBlock (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:862:11)
+    at _runTestsForDescribeBlock (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:857:11)
+    at _runTestsForDescribeBlock (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:857:11)
+    at run (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:761:3)
+    at runAndTransformResultsToJestFormat (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1918:21)
+    at jestAdapter (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\runner.js:101:19)
+    at runTestInternal (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-runner@30.2.0\node_modules\jest-runner\build\testWorker.js:275:16)
+    at runTest (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-runner@30.2.0\node_modules\jest-runner\build\testWorker.js:343:7)
+    at Object.worker (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-runner@30.2.0\node_modules\jest-runner\build\testWorker.js:497:12)</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">Python Client &gt; Configuration</div><div class="test-title">should configure predictive client with correct timeout</div><div class="test-status">failed</div><div class="test-duration">0.01s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+Expected: ObjectContaining {"baseURL": "http://localhost:8003", "timeout": 30000}
+
+Number of calls: 0
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\python-client.test.ts:466:26)
+    at Promise.finally.completed (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1557:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1497:10)
+    at _callCircusTest (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1007:40)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at _runTest (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:947:3)
+    at C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:849:7
+    at _runTestsForDescribeBlock (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:862:11)
+    at _runTestsForDescribeBlock (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:857:11)
+    at _runTestsForDescribeBlock (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:857:11)
+    at run (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:761:3)
+    at runAndTransformResultsToJestFormat (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1918:21)
+    at jestAdapter (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\runner.js:101:19)
+    at runTestInternal (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-runner@30.2.0\node_modules\jest-runner\build\testWorker.js:275:16)
+    at runTest (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-runner@30.2.0\node_modules\jest-runner\build\testWorker.js:343:7)
+    at Object.worker (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-runner@30.2.0\node_modules\jest-runner\build\testWorker.js:497:12)</pre></div></div></div></details><details id="suite-3" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\candidats-router.test.ts</div><div class="suite-time warn">14.079s</div></summary><div class="suite-tests"><div class="test-result failed"><div class="test-info"><div class="test-suitename">Candidats Router &gt; update</div><div class="test-title">should update candidat</div><div class="test-status">failed</div><div class="test-duration">0.002s</div></div><div class="failureMessages"> <pre class="failureMsg">TypeError: Cannot read properties of undefined (reading 'mockResolvedValue')
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\candidats-router.test.ts:313:44)
+    at Promise.finally.completed (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1557:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1497:10)
+    at _callCircusTest (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1007:40)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at _runTest (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:947:3)
+    at C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:849:7
+    at _runTestsForDescribeBlock (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:862:11)
+    at _runTestsForDescribeBlock (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:857:11)
+    at _runTestsForDescribeBlock (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:857:11)
+    at run (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:761:3)
+    at runAndTransformResultsToJestFormat (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1918:21)
+    at jestAdapter (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\runner.js:101:19)
+    at runTestInternal (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-runner@30.2.0\node_modules\jest-runner\build\testWorker.js:275:16)
+    at runTest (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-runner@30.2.0\node_modules\jest-runner\build\testWorker.js:343:7)
+    at Object.worker (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-runner@30.2.0\node_modules\jest-runner\build\testWorker.js:497:12)</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">Candidats Router &gt; update</div><div class="test-title">should update email if not already used by another candidat</div><div class="test-status">failed</div><div class="test-duration">0.001s</div></div><div class="failureMessages"> <pre class="failureMsg">TypeError: Cannot read properties of undefined (reading 'mockResolvedValue')
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\candidats-router.test.ts:334:44)
+    at Promise.finally.completed (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1557:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1497:10)
+    at _callCircusTest (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1007:40)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at _runTest (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:947:3)
+    at C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:849:7
+    at _runTestsForDescribeBlock (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:862:11)
+    at _runTestsForDescribeBlock (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:857:11)
+    at _runTestsForDescribeBlock (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:857:11)
+    at run (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:761:3)
+    at runAndTransformResultsToJestFormat (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1918:21)
+    at jestAdapter (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\runner.js:101:19)
+    at runTestInternal (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-runner@30.2.0\node_modules\jest-runner\build\testWorker.js:275:16)
+    at runTest (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-runner@30.2.0\node_modules\jest-runner\build\testWorker.js:343:7)
+    at Object.worker (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-runner@30.2.0\node_modules\jest-runner\build\testWorker.js:497:12)</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">Candidats Router &gt; update</div><div class="test-title">should throw CONFLICT when updating to existing email</div><div class="test-status">failed</div><div class="test-duration">0.001s</div></div><div class="failureMessages"> <pre class="failureMsg">TypeError: Cannot read properties of undefined (reading 'mockResolvedValue')
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\candidats-router.test.ts:352:44)
+    at Promise.finally.completed (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1557:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1497:10)
+    at _callCircusTest (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1007:40)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at _runTest (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:947:3)
+    at C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:849:7
+    at _runTestsForDescribeBlock (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:862:11)
+    at _runTestsForDescribeBlock (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:857:11)
+    at _runTestsForDescribeBlock (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:857:11)
+    at run (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:761:3)
+    at runAndTransformResultsToJestFormat (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1918:21)
+    at jestAdapter (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\runner.js:101:19)
+    at runTestInternal (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-runner@30.2.0\node_modules\jest-runner\build\testWorker.js:275:16)
+    at runTest (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-runner@30.2.0\node_modules\jest-runner\build\testWorker.js:343:7)
+    at Object.worker (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-runner@30.2.0\node_modules\jest-runner\build\testWorker.js:497:12)</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">Candidats Router &gt; update</div><div class="test-title">should stringify adresse when updating</div><div class="test-status">failed</div><div class="test-duration">0.001s</div></div><div class="failureMessages"> <pre class="failureMsg">TypeError: Cannot read properties of undefined (reading 'mockResolvedValue')
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\candidats-router.test.ts:365:44)
+    at Promise.finally.completed (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1557:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1497:10)
+    at _callCircusTest (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1007:40)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at _runTest (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:947:3)
+    at C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:849:7
+    at _runTestsForDescribeBlock (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:862:11)
+    at _runTestsForDescribeBlock (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:857:11)
+    at _runTestsForDescribeBlock (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:857:11)
+    at run (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:761:3)
+    at runAndTransformResultsToJestFormat (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\jestAdapterInit.js:1918:21)
+    at jestAdapter (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-circus@30.2.0\node_modules\jest-circus\build\runner.js:101:19)
+    at runTestInternal (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-runner@30.2.0\node_modules\jest-runner\build\testWorker.js:275:16)
+    at runTest (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-runner@30.2.0\node_modules\jest-runner\build\testWorker.js:343:7)
+    at Object.worker (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\jest-runner@30.2.0\node_modules\jest-runner\build\testWorker.js:497:12)</pre></div></div></div></details><details id="suite-4" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\ollama-installer.test.ts</div><div class="suite-time warn">13.612s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">Ollama Installer &gt; isInstalled</div><div class="test-title">should return true when Ollama is running</div><div class="test-status">passed</div><div class="test-duration">0.028s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Ollama Installer &gt; isInstalled</div><div class="test-title">should return false when Ollama is not running</div><div class="test-status">passed</div><div class="test-duration">0.034s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Ollama Installer &gt; isInstalled</div><div class="test-title">should return false when request times out</div><div class="test-status">passed</div><div class="test-duration">0.004s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Ollama Installer &gt; isInstalled</div><div class="test-title">should return false when response is not ok</div><div class="test-status">passed</div><div class="test-duration">0.003s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Ollama Installer &gt; getInstalledModels</div><div class="test-title">should return list of installed models</div><div class="test-status">passed</div><div class="test-duration">0.004s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Ollama Installer &gt; getInstalledModels</div><div class="test-title">should return empty array when no models installed</div><div class="test-status">passed</div><div class="test-duration">0.004s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Ollama Installer &gt; getInstalledModels</div><div class="test-title">should return empty array when fetch fails</div><div class="test-status">passed</div><div class="test-duration">0.004s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Ollama Installer &gt; getInstalledModels</div><div class="test-title">should return empty array when response is not ok</div><div class="test-status">passed</div><div class="test-duration">0.003s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Ollama Installer &gt; hasModel</div><div class="test-title">should return true when model is installed</div><div class="test-status">passed</div><div class="test-duration">0.003s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Ollama Installer &gt; hasModel</div><div class="test-title">should return false when model is not installed</div><div class="test-status">passed</div><div class="test-duration">0.003s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Ollama Installer &gt; hasModel</div><div class="test-title">should handle partial model name matching</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Ollama Installer &gt; openDownloadPage</div><div class="test-title">should open Windows download URL</div><div class="test-status">passed</div><div class="test-duration">0.007s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Ollama Installer &gt; openDownloadPage</div><div class="test-title">should open macOS download URL</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Ollama Installer &gt; openDownloadPage</div><div class="test-title">should open Linux download page</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Ollama Installer &gt; getInstallInstructions</div><div class="test-title">should return Windows instructions</div><div class="test-status">passed</div><div class="test-duration">0.016s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Ollama Installer &gt; getInstallInstructions</div><div class="test-title">should return macOS instructions</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Ollama Installer &gt; getInstallInstructions</div><div class="test-title">should return Linux instructions</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Ollama Installer &gt; waitForOllama</div><div class="test-title">should return true when Ollama becomes available</div><div class="test-status">passed</div><div class="test-duration">0.045s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Ollama Installer &gt; waitForOllama</div><div class="test-title">should return false when max retries exceeded</div><div class="test-status">passed</div><div class="test-duration">0.072s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Ollama Installer &gt; waitForOllama</div><div class="test-title">should return true immediately if already installed</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Ollama Installer &gt; getRecommendedModels</div><div class="test-title">should return list of recommended models</div><div class="test-status">passed</div><div class="test-duration">0.007s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Ollama Installer &gt; getRecommendedModels</div><div class="test-title">should include llama3.2:3b as recommended</div><div class="test-status">passed</div><div class="test-duration">0.003s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Ollama Installer &gt; getRecommendedModels</div><div class="test-title">should include multiple model sizes</div><div class="test-status">passed</div><div class="test-duration">0.005s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Ollama Installer &gt; getModelDownloadInstructions</div><div class="test-title">should return instructions for default model</div><div class="test-status">passed</div><div class="test-duration">0.003s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Ollama Installer &gt; getModelDownloadInstructions</div><div class="test-title">should return instructions for specific model</div><div class="test-status">passed</div><div class="test-duration">0.003s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Ollama Installer &gt; getModelDownloadInstructions</div><div class="test-title">should mention terminal/command prompt</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Ollama Installer &gt; getOllamaVersion</div><div class="test-title">should return version when Ollama is installed</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Ollama Installer &gt; getOllamaVersion</div><div class="test-title">should return null when fetch fails</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Ollama Installer &gt; getOllamaVersion</div><div class="test-title">should return null when response is not ok</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Ollama Installer &gt; getOllamaVersion</div><div class="test-title">should return null when version field is missing</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div></div></details><details id="suite-5" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\encryption.test.ts</div><div class="suite-time warn">13.642s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">Encryption Service &gt; encryptApiKey</div><div class="test-title">should encrypt a string</div><div class="test-status">passed</div><div class="test-duration">0.026s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Encryption Service &gt; encryptApiKey</div><div class="test-title">should produce different encrypted values for the same input</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Encryption Service &gt; encryptApiKey</div><div class="test-title">should encrypt empty string</div><div class="test-status">passed</div><div class="test-duration">0.003s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Encryption Service &gt; encryptApiKey</div><div class="test-title">should encrypt long API keys</div><div class="test-status">passed</div><div class="test-duration">0.02s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Encryption Service &gt; decryptApiKey</div><div class="test-title">should decrypt encrypted data correctly</div><div class="test-status">passed</div><div class="test-duration">0.036s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Encryption Service &gt; decryptApiKey</div><div class="test-title">should decrypt empty string correctly</div><div class="test-status">passed</div><div class="test-duration">0.003s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Encryption Service &gt; decryptApiKey</div><div class="test-title">should decrypt long keys correctly</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Encryption Service &gt; decryptApiKey</div><div class="test-title">should handle special characters</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Encryption Service &gt; decryptApiKey</div><div class="test-title">should throw error for invalid encrypted format</div><div class="test-status">passed</div><div class="test-duration">0.042s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Encryption Service &gt; decryptApiKey</div><div class="test-title">should throw error for malformed data</div><div class="test-status">passed</div><div class="test-duration">0.004s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Encryption Service &gt; Encrypt/Decrypt Round-Trip</div><div class="test-title">should preserve OpenAI API key format</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Encryption Service &gt; Encrypt/Decrypt Round-Trip</div><div class="test-title">should preserve Anthropic API key format</div><div class="test-status">passed</div><div class="test-duration">0.004s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Encryption Service &gt; Encrypt/Decrypt Round-Trip</div><div class="test-title">should preserve Google API key format</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Encryption Service &gt; Encrypt/Decrypt Round-Trip</div><div class="test-title">should preserve Mistral API key format</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Encryption Service &gt; Encrypt/Decrypt Round-Trip</div><div class="test-title">should handle multiple encryptions of same key</div><div class="test-status">passed</div><div class="test-duration">0.005s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Encryption Service &gt; Security</div><div class="test-title">should use AES-256-CBC encryption (format check)</div><div class="test-status">passed</div><div class="test-duration">0.004s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Encryption Service &gt; Security</div><div class="test-title">should produce non-predictable IV</div><div class="test-status">passed</div><div class="test-duration">0.007s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Encryption Service &gt; Security</div><div class="test-title">encrypted data should not contain plain text</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Encryption Service &gt; Security</div><div class="test-title">should not be reversible without decryption function</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div></div></details><details id="suite-6" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\redis-cache.test.ts</div><div class="suite-time warn">13.892s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">Redis Cache Service &gt; get</div><div class="test-title">should return null when key does not exist</div><div class="test-status">passed</div><div class="test-duration">0.004s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Redis Cache Service &gt; get</div><div class="test-title">should return null when Redis fails</div><div class="test-status">passed</div><div class="test-duration">0.003s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Redis Cache Service &gt; set</div><div class="test-title">should not throw when Redis fails</div><div class="test-status">passed</div><div class="test-duration">0.004s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Redis Cache Service &gt; del</div><div class="test-title">should not throw when Redis fails</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Redis Cache Service &gt; delPattern</div><div class="test-title">should not throw when Redis fails</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Redis Cache Service &gt; flush</div><div class="test-title">should not throw when Redis fails</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Redis Cache Service &gt; Integration</div><div class="test-title">should handle set-del-get cycle</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Redis Cache Service &gt; Integration</div><div class="test-title">should work in degraded mode when Redis is down</div><div class="test-status">passed</div><div class="test-duration">0.004s</div></div></div></div><div class="suite-consolelog"><div class="suite-consolelog-header">Console Log</div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at Object.warn [as delPattern] (C:\Users\RK\Desktop\MATCHPRO IA DEV\api\src\services\redis-cache.ts:58:15)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\redis-cache.test.ts:194:7)</pre><pre class="suite-consolelog-item-message">Cache delPattern failed: TypeError: Cannot read properties of undefined (reading 'length')
+    at Object.length [as delPattern] (C:\Users\RK\Desktop\MATCHPRO IA DEV\api\src\services\redis-cache.ts:54:16)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\redis-cache.test.ts:194:7)</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at Object.warn [as delPattern] (C:\Users\RK\Desktop\MATCHPRO IA DEV\api\src\services\redis-cache.ts:58:15)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\redis-cache.test.ts:203:7)</pre><pre class="suite-consolelog-item-message">Cache delPattern failed: TypeError: Cannot read properties of undefined (reading 'length')
+    at Object.length [as delPattern] (C:\Users\RK\Desktop\MATCHPRO IA DEV\api\src\services\redis-cache.ts:54:16)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\redis-cache.test.ts:203:7)</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at Object.warn [as delPattern] (C:\Users\RK\Desktop\MATCHPRO IA DEV\api\src\services\redis-cache.ts:58:15)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\redis-cache.test.ts:222:7)</pre><pre class="suite-consolelog-item-message">Cache delPattern failed: TypeError: Cannot read properties of undefined (reading 'length')
+    at Object.length [as delPattern] (C:\Users\RK\Desktop\MATCHPRO IA DEV\api\src\services\redis-cache.ts:54:16)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\redis-cache.test.ts:222:7)</pre></div></div></details><details id="suite-7" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\matching-router.test.ts</div><div class="suite-time warn">13.885s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">Matching Router &gt; matchCandidates - Offre to Candidats</div><div class="test-title">should match all candidats for an offre using Python service</div><div class="test-status">passed</div><div class="test-duration">0.046s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Matching Router &gt; matchCandidates - Offre to Candidats</div><div class="test-title">should fallback to rule-based matching when Python service fails</div><div class="test-status">passed</div><div class="test-duration">0.008s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Matching Router &gt; matchCandidates - Offre to Candidats</div><div class="test-title">should throw error when offre not found</div><div class="test-status">passed</div><div class="test-duration">0.068s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Matching Router &gt; matchCandidates - Candidat to Offres</div><div class="test-title">should match all offres for a candidat</div><div class="test-status">passed</div><div class="test-duration">0.003s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Matching Router &gt; matchCandidates - Candidat to Offres</div><div class="test-title">should throw error when candidat not found</div><div class="test-status">passed</div><div class="test-duration">0.004s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Matching Router &gt; getMatchings</div><div class="test-title">should get matchings for an offre sorted by score</div><div class="test-status">passed</div><div class="test-duration">0.005s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Matching Router &gt; getMatchings</div><div class="test-title">should parse JSON fields correctly</div><div class="test-status">passed</div><div class="test-duration">0.012s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Matching Router &gt; getMatchingsForCandidat</div><div class="test-title">should get matchings for a candidat</div><div class="test-status">passed</div><div class="test-duration">0.004s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Matching Router &gt; getAllMatchings</div><div class="test-title">should get all matchings with default limit</div><div class="test-status">passed</div><div class="test-duration">0.006s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Matching Router &gt; getAllMatchings</div><div class="test-title">should filter by minimum score</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Matching Router &gt; getAllMatchings</div><div class="test-title">should limit results</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Matching Router &gt; Rule-based Matching Algorithm</div><div class="test-title">should score competences match correctly</div><div class="test-status">passed</div><div class="test-duration">0.065s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Matching Router &gt; Error Handling</div><div class="test-title">should throw error when neither offreId nor candidatId provided</div><div class="test-status">passed</div><div class="test-duration">0.028s</div></div></div></div><div class="suite-consolelog"><div class="suite-consolelog-header">Console Log</div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at C:\Users\RK\Desktop\MATCHPRO IA DEV\api\src\routers\matching.ts:154:19
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at resolveMiddleware (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\@trpc+server@10.45.2\node_modules\@trpc\server\dist\index.js:423:30)
+    at callRecursive (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\@trpc+server@10.45.2\node_modules\@trpc\server\dist\index.js:453:32)
+    at callRecursive (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\@trpc+server@10.45.2\node_modules\@trpc\server\dist\index.js:453:32)
+    at resolve (C:\Users\RK\Desktop\MATCHPRO IA DEV\node_modules\.pnpm\@trpc+server@10.45.2\node_modules\@trpc\server\dist\index.js:483:24)
+    at Object.&lt;anonymous&gt; (C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\matching-router.test.ts:444:7)</pre><pre class="suite-consolelog-item-message">Python service not available, using simple rule-based matching</pre></div></div></details><details id="suite-8" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\python-client.test.ts</div><div class="suite-time warn">14.027s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">Python Client &gt; parseCV</div><div class="test-title">should call parser service with correct params</div><div class="test-status">passed</div><div class="test-duration">0.071s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Python Client &gt; healthCheck</div><div class="test-title">should return all services healthy</div><div class="test-status">passed</div><div class="test-duration">0.003s</div></div></div></div></details><details id="suite-9" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\candidats-router.test.ts</div><div class="suite-time warn">14.079s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">Candidats Router &gt; list</div><div class="test-title">should list all candidats with default pagination</div><div class="test-status">passed</div><div class="test-duration">0.035s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Candidats Router &gt; list</div><div class="test-title">should search candidats by name</div><div class="test-status">passed</div><div class="test-duration">0.01s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Candidats Router &gt; list</div><div class="test-title">should search candidats by email</div><div class="test-status">passed</div><div class="test-duration">0.007s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Candidats Router &gt; list</div><div class="test-title">should handle pagination</div><div class="test-status">passed</div><div class="test-duration">0.003s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Candidats Router &gt; list</div><div class="test-title">should parse JSON fields correctly</div><div class="test-status">passed</div><div class="test-duration">0.005s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Candidats Router &gt; get</div><div class="test-title">should get candidat by id</div><div class="test-status">passed</div><div class="test-duration">0.003s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Candidats Router &gt; get</div><div class="test-title">should throw NOT_FOUND when candidat does not exist</div><div class="test-status">passed</div><div class="test-duration">0.038s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Candidats Router &gt; get</div><div class="test-title">should handle candidat without langues</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Candidats Router &gt; create</div><div class="test-title">should create new candidat</div><div class="test-status">passed</div><div class="test-duration">0.006s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Candidats Router &gt; create</div><div class="test-title">should throw CONFLICT when email already exists</div><div class="test-status">passed</div><div class="test-duration">0.003s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Candidats Router &gt; create</div><div class="test-title">should use default values for optional fields</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Candidats Router &gt; delete</div><div class="test-title">should delete candidat</div><div class="test-status">passed</div><div class="test-duration">0.003s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Candidats Router &gt; delete</div><div class="test-title">should invalidate cache after delete</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div></div></details><details id="suite-10" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">C:\Users\RK\Desktop\MATCHPRO IA DEV\tests\offres-router.test.ts</div><div class="suite-time warn">15.297s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">Offres Router &gt; list</div><div class="test-title">should list all offres with default pagination</div><div class="test-status">passed</div><div class="test-duration">0.014s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Offres Router &gt; list</div><div class="test-title">should filter offres by entrepriseId</div><div class="test-status">passed</div><div class="test-duration">0.003s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Offres Router &gt; list</div><div class="test-title">should filter offres by statut</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Offres Router &gt; list</div><div class="test-title">should filter by both entrepriseId and statut</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Offres Router &gt; list</div><div class="test-title">should handle pagination</div><div class="test-status">passed</div><div class="test-duration">0.003s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Offres Router &gt; get</div><div class="test-title">should get offre by id</div><div class="test-status">passed</div><div class="test-duration">0.003s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Offres Router &gt; get</div><div class="test-title">should throw NOT_FOUND when offre does not exist</div><div class="test-status">passed</div><div class="test-duration">0.014s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Offres Router &gt; create</div><div class="test-title">should create new offre</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Offres Router &gt; create</div><div class="test-title">should add default niveauEtudes</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Offres Router &gt; update</div><div class="test-title">should update offre</div><div class="test-status">passed</div><div class="test-duration">0.007s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Offres Router &gt; update</div><div class="test-title">should stringify localisation when updating</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Offres Router &gt; update</div><div class="test-title">should stringify salaire when updating</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Offres Router &gt; update</div><div class="test-title">should stringify competences when updating</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Offres Router &gt; update</div><div class="test-title">should update multiple fields at once</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Offres Router &gt; delete</div><div class="test-title">should delete offre</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div></div></details></main></body></html>
