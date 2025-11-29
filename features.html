@@ -43,19 +43,65 @@
     <!-- Matching Intelligent -->
     <div class="feature-detail-card">
       <div class="feature-detail-content">
-        <h3>Algorithme de Matching Hybride</h3>
-        <p>Notre algorithme combine trois approches complementaires pour garantir des correspondances optimales entre candidats et offres.</p>
+        <h3>Algorithme de Matching Hybride + Moteur Jokil Pre-Entraine</h3>
+        <p>Notre algorithme combine trois approches complementaires AVEC un moteur ML deja entraine sur 10000+ matchings reels.</p>
         <ul>
-          <li>40% Score Semantique - Analyse NLP avec Sentence-BERT</li>
-          <li>40% Regles Metier - Competences, experience, localisation</li>
-          <li>20% Score Predictif ML - Patterns de succes analyses</li>
+          <li>40% Score Semantique - Sentence-BERT paraphrase-multilingual-mpnet (local)</li>
+          <li>40% Regles Metier - Competences, experience, localisation, teletravail</li>
+          <li>20% Score Predictif ML Jokil - XGBoost pre-entraine sur 10000+ cas reels</li>
+          <li>Predictions avec 85%+ de confiance des le premier jour</li>
+          <li>Apprentissage continu adapte a votre usage specifique</li>
           <li>Filtres par score minimum (50%, 70%, 85%, 90%)</li>
-          <li>Export CSV des resultats</li>
+          <li>Export CSV des resultats avec scores detailles</li>
         </ul>
       </div>
       <div class="feature-detail-image">
         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Analyse Candidat -->
+    <div class="feature-detail-card">
+      <div class="feature-detail-content">
+        <h3>Analyse Enrichie Candidat (Joskil)</h3>
+        <p>Lors de l'import d'un CV, MatchPro IA extrait automatiquement des informations avancees pour enrichir le profil et optimiser les matchings.</p>
+        <ul>
+          <li><strong>Niveau de seniorite:</strong> Junior / Confirme / Senior / Expert (detecte automatiquement)</li>
+          <li><strong>Secteur dominant:</strong> Analyse des experiences pour identifier le secteur principal</li>
+          <li><strong>Metier principal:</strong> Identification du poste cœur via dictionnaire Jokil</li>
+          <li><strong>Score d'employabilite:</strong> Calcul base sur competences, stabilite, polyvalence</li>
+          <li><strong>Stabilite du parcours:</strong> Tendance stable / mobile / en transition</li>
+          <li><strong>Polyvalence:</strong> Detection profils specialises vs multi-secteurs</li>
+          <li><strong>Recommandations:</strong> Suggestions de types d'offres a cibler</li>
+        </ul>
+      </div>
+      <div class="feature-detail-image">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Analyse Offre -->
+    <div class="feature-detail-card">
+      <div class="feature-detail-content">
+        <h3>Analyse Enrichie Offre (Joskil)</h3>
+        <p>Lors de la creation d'une offre, MatchPro IA extrait automatiquement toutes les informations importantes depuis la description.</p>
+        <ul>
+          <li><strong>Remuneration:</strong> Salaire min/max, periode (annuel/mensuel/horaire), brut/net, variables</li>
+          <li><strong>Teletravail:</strong> Jours/semaine, pourcentage, full remote, modalites</li>
+          <li><strong>Avantages:</strong> Tickets resto, mutuelle, prevoyance, 13e mois, primes, CE, formation</li>
+          <li><strong>Competences:</strong> Techniques + soft skills avec niveau et caractere obligatoire</li>
+          <li><strong>Experience:</strong> Annees min/max, diplome requis, certifications</li>
+          <li><strong>Details poste:</strong> Urgence, date prise poste, taille equipe, management, horaires</li>
+          <li><strong>Langues:</strong> Detection automatique des langues requises + niveau</li>
+        </ul>
+      </div>
+      <div class="feature-detail-image">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
         </svg>
       </div>
     </div>
@@ -193,11 +239,13 @@
         <ul>
           <li><a href="test-web-published/home.html">Documentation</a></li>
           <li><a href="test-web-published/docs/index.html">API Reference</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="cgv.html">CGV</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>VIEY DAVID - MatchPro IA v1.8.0 - 2025. Tous droits reserves.</p>
+      <p>VIEY DAVID - MatchPro IA v2.0.0 - 2025. Tous droits reserves.</p>
     </div>
   </footer>
 </body>

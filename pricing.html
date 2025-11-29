@@ -38,58 +38,75 @@
     </div>
 
     <div class="pricing-grid" style="max-width: 1100px; margin: 0 auto;">
-      <!-- Free -->
+      <!-- Candidat -->
       <div class="pricing-card">
-        <h3>Gratuit</h3>
+        <h3>Candidat</h3>
         <p style="color: var(--text-light); margin-bottom: 1rem;">Pour particuliers en recherche d'emploi</p>
-        <div class="price">0EUR</div>
+        <div class="price">9.99EUR <span>/mois</span></div>
+        <div style="background: rgba(102, 126, 234, 0.1); padding: 0.5rem 1rem; border-radius: 8px; margin-bottom: 1rem; font-size: 0.9rem; color: var(--primary-purple); font-weight: 600;">
+          2 mois gratuits offerts
+        </div>
         <ul>
-          <li>1 profil candidat</li>
-          <li>10 offres visibles</li>
-          <li>3 matchings par jour</li>
-          <li>1 fournisseur IA (Ollama local)</li>
-          <li>Parsing CV basique</li>
-          <li>Dashboard simplifie</li>
-          <li>Donnees 100% locales</li>
-          <li>Chiffrement AES-256</li>
-        </ul>
-        <a href="index.html#download" class="btn btn-secondary" style="width: 100%; justify-content: center; margin-top: 1rem;">Telecharger Gratuit</a>
-      </div>
-
-      <!-- Solo -->
-      <div class="pricing-card">
-        <h3>Solo</h3>
-        <p style="color: var(--text-light); margin-bottom: 1rem;">Pour freelances RH et consultants</p>
-        <div class="price">29.99EUR <span>/mois</span></div>
-        <ul>
-          <li>500 candidats</li>
-          <li>100 offres d'emploi</li>
+          <li>1 profil candidat enrichi</li>
+          <li>Offres illimitees</li>
           <li>Matchings illimites</li>
-          <li>2 fournisseurs IA au choix</li>
-          <li>Parsing CV (PDF, DOCX)</li>
+          <li>Parsing CV automatique (PDF/DOCX/Image OCR)</li>
+          <li>Analyse Joskil (seniorite, employabilite)</li>
+          <li>Predictions ML XGBoost</li>
+          <li>1 fournisseur IA au choix (ou Ollama local)</li>
           <li>Dashboard temps reel</li>
-          <li>Export CSV</li>
-          <li>Mises a jour incluses</li>
+          <li>Export CSV des matchings</li>
+          <li>Donnees 100% locales</li>
         </ul>
-        <a href="contact.html" class="btn btn-secondary" style="width: 100%; justify-content: center; margin-top: 1rem;">Choisir Solo</a>
+        <a href="contact.html" class="btn btn-secondary" style="width: 100%; justify-content: center; margin-top: 1rem;">Essayer 2 mois gratuits</a>
       </div>
 
-      <!-- Pro -->
+      <!-- Entreprise -->
       <div class="pricing-card featured">
-        <h3>Pro</h3>
-        <p style="color: var(--text-light); margin-bottom: 1rem;">Pour agences et services RH</p>
-        <div class="price">79.99EUR <span>/mois</span></div>
+        <h3>Entreprise</h3>
+        <p style="color: var(--text-light); margin-bottom: 1rem;">Pour recruteurs, agences et services RH</p>
+        <div class="price">49.99EUR <span>/mois</span></div>
+        <div style="background: rgba(102, 126, 234, 0.1); padding: 0.5rem 1rem; border-radius: 8px; margin-bottom: 1rem; font-size: 0.9rem; color: var(--primary-purple); font-weight: 600;">
+          2 mois d'essai gratuits
+        </div>
         <ul>
           <li>Candidats illimites</li>
           <li>Offres illimitees</li>
           <li>Matchings illimites</li>
-          <li>5 fournisseurs IA + priorite</li>
           <li>Parsing CV + OCR images</li>
-          <li>Matching bidirectionnel</li>
-          <li>Filtres avances (50-90%)</li>
+          <li>Analyse Joskil complete (candidat + offre)</li>
+          <li>Moteur ML Jokil pre-entraine (10000+ matchings)</li>
+          <li>5 fournisseurs IA avec systeme de priorite</li>
+          <li>Matching bidirectionnel (candidat→offre, offre→candidat)</li>
+          <li>Filtres avances par score (50-90%)</li>
+          <li>Dashboard analytics complet</li>
+          <li>Export CSV avance</li>
+          <li>API France Travail integree</li>
           <li>Support prioritaire</li>
         </ul>
-        <a href="contact.html" class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: 1rem;">Choisir Pro</a>
+        <a href="contact.html" class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: 1rem;">Essayer 2 mois gratuits</a>
+      </div>
+
+      <!-- Entreprise Sur Mesure -->
+      <div class="pricing-card">
+        <h3>Entreprise Sur Mesure</h3>
+        <p style="color: var(--text-light); margin-bottom: 1rem;">Pour grandes entreprises et besoins specifiques</p>
+        <div class="price">Sur devis</div>
+        <ul>
+          <li><strong>Tout du plan Entreprise +</strong></li>
+          <li>Import automatise Indeed</li>
+          <li>Import automatise LinkedIn</li>
+          <li>Import sources externes personnalisees</li>
+          <li>Connecteurs API custom</li>
+          <li>Workflow personnalise</li>
+          <li>Formation equipe RH</li>
+          <li>Support dedié 24/7</li>
+          <li>SLA garanti</li>
+          <li>Deploiement multi-sites</li>
+          <li>Personnalisation interface</li>
+          <li>Integration avec votre ATS/SIRH</li>
+        </ul>
+        <a href="contact.html" class="btn btn-secondary" style="width: 100%; justify-content: center; margin-top: 1rem;">Demander un devis</a>
       </div>
     </div>
 
@@ -142,23 +159,38 @@
       </div>
 
       <div style="background: white; padding: 2rem; border-radius: 15px; margin-bottom: 1rem; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
-        <h4 style="margin-bottom: 0.5rem;">La version gratuite est vraiment gratuite ?</h4>
-        <p style="color: var(--text-light); margin: 0;">Oui, 100% gratuite et sans publicite. Parfaite pour les particuliers en recherche d'emploi. Limitee a 1 profil, 10 offres et 3 matchings/jour.</p>
+        <h4 style="margin-bottom: 0.5rem;">Comment recuperer une cle API ?</h4>
+        <p style="color: var(--text-light); margin: 0;"><strong>OpenAI:</strong> platform.openai.com/api-keys | <strong>Anthropic Claude:</strong> console.anthropic.com | <strong>Google Gemini:</strong> aistudio.google.com/apikey | <strong>Mistral:</strong> console.mistral.ai | <strong>Ollama:</strong> Installer depuis ollama.com (pas de cle requise, IA 100% locale)</p>
       </div>
 
       <div style="background: white; padding: 2rem; border-radius: 15px; margin-bottom: 1rem; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
-        <h4 style="margin-bottom: 0.5rem;">Quelle difference entre les offres ?</h4>
-        <p style="color: var(--text-light); margin: 0;">Gratuit = usage personnel limite. Solo = freelance RH (500 candidats). Pro = agences, illimite avec toutes les fonctionnalites.</p>
+        <h4 style="margin-bottom: 0.5rem;">Comment configurer Ollama pour fonctionner 100% hors-ligne ?</h4>
+        <p style="color: var(--text-light); margin: 0;">1. Telecharger Ollama depuis ollama.com | 2. Installer et lancer Ollama | 3. Telecharger un modele (ex: <code>ollama pull llama3.2</code>) | 4. Dans MatchPro IA → Parametres → API → Ajouter Ollama (endpoint: http://localhost:11434) | 5. Activer et mettre en priorite haute. Aucune donnee ne quittera votre PC.</p>
       </div>
 
       <div style="background: white; padding: 2rem; border-radius: 15px; margin-bottom: 1rem; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
-        <h4 style="margin-bottom: 0.5rem;">Dois-je payer les cles API ?</h4>
-        <p style="color: var(--text-light); margin: 0;">Version gratuite: non, Ollama fonctionne 100% en local. Solo/Pro: oui, vous fournissez vos cles API.</p>
+        <h4 style="margin-bottom: 0.5rem;">Dois-je payer les cles API en plus de l'abonnement ?</h4>
+        <p style="color: var(--text-light); margin: 0;">Oui, vous fournissez vos propres cles API (OpenAI, Claude, etc.) et payez directement aux fournisseurs selon votre usage. MatchPro IA ne facture QUE l'abonnement logiciel. <strong>Alternative gratuite:</strong> Utilisez Ollama (IA locale, zero cout API).</p>
+      </div>
+
+      <div style="background: white; padding: 2rem; border-radius: 15px; margin-bottom: 1rem; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+        <h4 style="margin-bottom: 0.5rem;">Le machine learning s'ameliore-t-il vraiment avec mon usage ?</h4>
+        <p style="color: var(--text-light); margin: 0;">Oui ! Le moteur Jokil est <strong>livre pre-entraine sur 10000+ matchings reels</strong>. Il est deja performant des le jour 1. Puis chaque matching accepte/refuse enrichit le modele pour l'adapter a VOS criteres specifiques (secteur, exigences, contexte). Le re-entrainement est automatique.</p>
+      </div>
+
+      <div style="background: white; padding: 2rem; border-radius: 15px; margin-bottom: 1rem; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+        <h4 style="margin-bottom: 0.5rem;">Mes donnees sont-elles partagees avec les fournisseurs IA ?</h4>
+        <p style="color: var(--text-light); margin: 0;"><strong>Parsing CV et analyse:</strong> Les donnees sont envoyees au provider IA choisi (OpenAI, Claude, etc.) pour extraction. <strong>Matching:</strong> 100% local (Sentence-BERT + regles + ML XGBoost), aucune donnee envoyee. <strong>Avec Ollama:</strong> Tout est local, zero donnee partagee.</p>
+      </div>
+
+      <div style="background: white; padding: 2rem; border-radius: 15px; margin-bottom: 1rem; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+        <h4 style="margin-bottom: 0.5rem;">Difference entre plan Candidat et Entreprise ?</h4>
+        <p style="color: var(--text-light); margin: 0;"><strong>Candidat (9.99€/mois):</strong> 1 profil, ideal recherche d'emploi, offres illimitees. <strong>Entreprise (49.99€/mois):</strong> Candidats/offres illimites, API France Travail, analytics complets, ideal recruteurs/agences. <strong>2 mois d'essai gratuits</strong> pour tester sans risque.</p>
       </div>
 
       <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
-        <h4 style="margin-bottom: 0.5rem;">Puis-je upgrader a tout moment ?</h4>
-        <p style="color: var(--text-light); margin: 0;">Oui ! Passez de Gratuit a Solo ou Pro quand vous voulez. Vos donnees sont conservees.</p>
+        <h4 style="margin-bottom: 0.5rem;">Puis-je upgrader ou changer de plan ?</h4>
+        <p style="color: var(--text-light); margin: 0;">Oui, a tout moment ! Passez de Candidat a Entreprise ou Sur Mesure quand vous voulez. Toutes vos donnees (candidats, offres, matchings, modele ML) sont conservees. Contactez-nous pour la migration.</p>
       </div>
     </div>
   </section>
@@ -191,11 +223,13 @@
         <ul>
           <li><a href="test-web-published/home.html">Documentation</a></li>
           <li><a href="test-web-published/docs/index.html">API Reference</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="cgv.html">CGV</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>VIEY DAVID - MatchPro IA v1.8.0 - 2025. Tous droits reserves.</p>
+      <p>VIEY DAVID - MatchPro IA v2.0.0 - 2025. Tous droits reserves.</p>
     </div>
   </footer>
 </body>

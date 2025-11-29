@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="FAQ MatchPro IA - Toutes les reponses a vos questions sur le logiciel de recrutement intelligent.">
+  <title>FAQ - MatchPro IA</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+          </svg>
+        </div>
+        <span class="logo-text">MatchPro IA</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="features.html">Fonctionnalites</a></li>
+        <li><a href="pricing.html">Tarifs</a></li>
+        <li><a href="test-web-published/home.html">Documentation</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="index.html#download" class="nav-cta">Telecharger</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" style="padding-bottom: 3rem;">
+    <div class="hero-content">
+      <h1>Foire Aux Questions</h1>
+      <p>Toutes les reponses sur MatchPro IA, le machine learning Jokil, les cles API et l'utilisation du logiciel.</p>
+    </div>
+  </section>
+
+  <!-- FAQ Categories -->
+  <section style="max-width: 1000px; margin: 0 auto; padding: 3rem 2rem;">
+
+    <!-- Machine Learning & Jokil -->
+    <div style="margin-bottom: 4rem;">
+      <h2 style="color: var(--primary-purple); border-bottom: 3px solid var(--primary-purple); padding-bottom: 1rem; margin-bottom: 2rem;">Machine Learning & Moteur Jokil</h2>
+
+      <div style="background: white; padding: 2rem; border-radius: 15px; margin-bottom: 1.5rem; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+        <h3 style="margin-bottom: 1rem; color: var(--text-dark);">Qu'est-ce que le moteur Jokil ?</h3>
+        <p style="color: var(--text-light); line-height: 1.8; margin: 0;">Jokil est le moteur de machine learning XGBoost integre a MatchPro IA. Il est <strong>pre-entraine sur 10000+ matchings reels</strong> avant meme votre installation. Son role: predire avec 85%+ de confiance si un matching candidat-offre va aboutir, en analysant 16 features (competences, experience, distance, teletravail, etc.). Jokil s'ameliore ensuite en continu avec votre usage pour s'adapter a VOS criteres specifiques.</p>
+      </div>
+
+      <div style="background: white; padding: 2rem; border-radius: 15px; margin-bottom: 1.5rem; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+        <h3 style="margin-bottom: 1rem; color: var(--text-dark);">Le logiciel arrive-t-il vide ou deja entraine ?</h3>
+        <p style="color: var(--text-light); line-height: 1.8; margin: 0;">Le logiciel arrive avec une <strong>base de donnees vide</strong> (pas de candidats/offres pre-charges), MAIS avec le <strong>moteur ML Jokil deja entraine sur 10000+ matchings</strong>. Des votre premier matching, Jokil est deja performant. Vous n'avez pas a attendre des mois pour avoir des predictions fiables, contrairement aux autres solutions IA qui partent de zero.</p>
+      </div>
+
+      <div style="background: white; padding: 2rem; border-radius: 15px; margin-bottom: 1.5rem; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+        <h3 style="margin-bottom: 1rem; color: var(--text-dark);">Comment Jokil s'ameliore-t-il avec mon usage ?</h3>
+        <p style="color: var(--text-light); line-height: 1.8; margin: 0;">Chaque fois que vous acceptez ou refusez un matching, Jokil enregistre cette decision comme un "feedback". Ces feedbacks enrichissent les donnees d'entrainement. Regulierement, Jokil se re-entraine automatiquement pour affiner ses predictions selon VOS criteres (votre secteur, vos exigences salariales, vos preferences geographiques, etc.). Plus vous utilisez MatchPro IA, plus il devient precis pour VOUS.</p>
+      </div>
+
+      <div style="background: white; padding: 2rem; border-radius: 15px; margin-bottom: 1.5rem; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+        <h3 style="margin-bottom: 1rem; color: var(--text-dark);">Que sont les 16 features analysees par Jokil ?</h3>
+        <p style="color: var(--text-light); line-height: 1.8; margin: 0;">Jokil analyse 16 dimensions par matching: (1) Score semantique, (2) Score regles metier, (3) Ratio experience candidat/requise, (4) Ratio competences matchees, (5) Competences obligatoires matchees, (6) Niveau moyen des competences, (7) Nombre d'experiences, (8) Stabilite du parcours, (9) Distance geographique, (10) Permis, (11) Vehicule, (12) Teletravail, (13) Urgence recrutement, (14) Disponibilite, (15) Type de contrat, (16) Compatibilite metier via dictionnaire Jokil.</p>
+      </div>
+    </div>
+
+    <!-- Cles API & Providers IA -->
+    <div style="margin-bottom: 4rem;">
+      <h2 style="color: var(--primary-blue); border-bottom: 3px solid var(--primary-blue); padding-bottom: 1rem; margin-bottom: 2rem;">Cles API & Providers IA</h2>
+
+      <div style="background: white; padding: 2rem; border-radius: 15px; margin-bottom: 1.5rem; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+        <h3 style="margin-bottom: 1rem; color: var(--text-dark);">Comment recuperer une cle API ?</h3>
+        <p style="color: var(--text-light); line-height: 1.8; margin-bottom: 1rem;"><strong>OpenAI (GPT):</strong> Allez sur platform.openai.com/api-keys → Creer une cle → Copier</p>
+        <p style="color: var(--text-light); line-height: 1.8; margin-bottom: 1rem;"><strong>Anthropic Claude:</strong> console.anthropic.com → API Keys → Create Key</p>
+        <p style="color: var(--text-light); line-height: 1.8; margin-bottom: 1rem;"><strong>Google Gemini:</strong> aistudio.google.com/apikey → Get API key</p>
+        <p style="color: var(--text-light); line-height: 1.8; margin-bottom: 1rem;"><strong>Mistral AI:</strong> console.mistral.ai → API keys → Create new key</p>
+        <p style="color: var(--text-light); line-height: 1.8; margin: 0;"><strong>Ollama:</strong> Pas de cle requise. Installer depuis ollama.com, endpoint local: http://localhost:11434</p>
+      </div>
+
+      <div style="background: white; padding: 2rem; border-radius: 15px; margin-bottom: 1.5rem; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+        <h3 style="margin-bottom: 1rem; color: var(--text-dark);">Comment configurer Ollama pour fonctionner 100% hors-ligne ?</h3>
+        <p style="color: var(--text-light); line-height: 1.8; margin: 0;"><strong>Etape 1:</strong> Telecharger et installer Ollama depuis ollama.com<br>
+        <strong>Etape 2:</strong> Ouvrir un terminal et telecharger un modele: <code>ollama pull llama3.2</code><br>
+        <strong>Etape 3:</strong> Dans MatchPro IA → Parametres → API → Ajouter un provider → Ollama<br>
+        <strong>Etape 4:</strong> Endpoint: <code>http://localhost:11434</code>, Modele: <code>llama3.2</code><br>
+        <strong>Etape 5:</strong> Activer et mettre en priorite haute (80-100)<br>
+        <strong>Resultat:</strong> Aucune donnee ne quitte votre PC. Parsing CV, analyse et matching 100% locaux.</p>
+      </div>
+
+      <div style="background: white; padding: 2rem; border-radius: 15px; margin-bottom: 1.5rem; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+        <h3 style="margin-bottom: 1rem; color: var(--text-dark);">Dois-je payer les cles API en plus de l'abonnement MatchPro IA ?</h3>
+        <p style="color: var(--text-light); line-height: 1.8; margin: 0;">Oui. MatchPro IA facture UNIQUEMENT l'abonnement logiciel (9.99€ ou 49.99€/mois). Vous fournissez vos propres cles API et payez directement aux providers (OpenAI, Claude, etc.) selon votre consommation. <strong>Alternative gratuite:</strong> Utilisez Ollama (IA locale, zero cout API, zero donnee partagee).</p>
+      </div>
+
+      <div style="background: white; padding: 2rem; border-radius: 15px; margin-bottom: 1.5rem; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+        <h3 style="margin-bottom: 1rem; color: var(--text-dark);">A quel moment la cle API est-elle sollicitee ?</h3>
+        <p style="color: var(--text-light); line-height: 1.8; margin: 0;"><strong>Cle API utilisee:</strong> Parsing CV (extraction texte → donnees structurees), Analyse candidat (seniorite, metier, employabilite), Analyse offre (extraction salaire, teletravail, avantages). <strong>Cle API NON utilisee:</strong> Matching candidat-offre (Sentence-BERT local), Calcul scores semantiques (embeddings caches localement), Regles metier (100% local), Predictions ML Jokil (XGBoost local). <strong>Avec Ollama:</strong> Tout est local, zero appel API externe.</p>
+      </div>
+    </div>
+
+    <!-- Confidentialite & Donnees -->
+    <div style="margin-bottom: 4rem;">
+      <h2 style="color: var(--primary-purple); border-bottom: 3px solid var(--primary-purple); padding-bottom: 1rem; margin-bottom: 2rem;">Confidentialite & Donnees</h2>
+
+      <div style="background: white; padding: 2rem; border-radius: 15px; margin-bottom: 1.5rem; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+        <h3 style="margin-bottom: 1rem; color: var(--text-dark);">Mes donnees sont-elles partagees avec les fournisseurs IA ?</h3>
+        <p style="color: var(--text-light); line-height: 1.8; margin: 0;"><strong>Lors du parsing CV et analyse:</strong> Oui, les donnees (texte du CV, description offre) sont envoyees au provider IA choisi (OpenAI, Claude, etc.) pour extraction. Ces providers ont leurs propres politiques de confidentialite. <strong>Lors du matching:</strong> Non, tout est local (Sentence-BERT + regles + ML). Aucune donnee envoyee. <strong>Avec Ollama:</strong> Rien ne quitte votre PC, jamais.</p>
+      </div>
+
+      <div style="background: white; padding: 2rem; border-radius: 15px; margin-bottom: 1.5rem; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+        <h3 style="margin-bottom: 1rem; color: var(--text-dark);">Ou sont stockees mes donnees ?</h3>
+        <p style="color: var(--text-light); line-height: 1.8; margin: 0;">Toutes vos donnees sont stockees <strong>localement sur votre PC</strong> dans une base SQLite (candidats, offres, matchings, entreprises). Le modele ML Jokil (ml_model.pkl) et les donnees d'entrainement (training_data.json) sont egalement locaux. Vos cles API sont chiffrees AES-256 et stockees localement. <strong>MatchPro IA n'a aucun serveur cloud, aucune base distante</strong>. Vos donnees vous appartiennent a 100%.</p>
+      </div>
+
+      <div style="background: white; padding: 2rem; border-radius: 15px; margin-bottom: 1.5rem; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+        <h3 style="margin-bottom: 1rem; color: var(--text-dark);">Puis-je utiliser MatchPro IA sans connexion internet ?</h3>
+        <p style="color: var(--text-light); line-height: 1.8; margin: 0;">Oui, partiellement. <strong>Avec Ollama configure:</strong> Parsing CV, analyse et matching fonctionnent 100% hors-ligne. <strong>Sans Ollama:</strong> Le matching fonctionne hors-ligne (Sentence-BERT + regles + ML locaux), mais le parsing CV et l'analyse necessitent internet pour appeler les API cloud.</p>
+      </div>
+    </div>
+
+    <!-- Tarifs & Abonnements -->
+    <div style="margin-bottom: 4rem;">
+      <h2 style="color: var(--primary-blue); border-bottom: 3px solid var(--primary-blue); padding-bottom: 1rem; margin-bottom: 2rem;">Tarifs & Abonnements</h2>
+
+      <div style="background: white; padding: 2rem; border-radius: 15px; margin-bottom: 1.5rem; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+        <h3 style="margin-bottom: 1rem; color: var(--text-dark);">Quelle difference entre plan Candidat et Entreprise ?</h3>
+        <p style="color: var(--text-light); line-height: 1.8; margin: 0;"><strong>Candidat (9.99€/mois):</strong> 1 profil candidat, offres illimitees, parsing CV, analyse Joskil, predictions ML, 1 provider IA, ideal recherche d'emploi individuelle. <strong>Entreprise (49.99€/mois):</strong> Candidats/offres illimites, analyse complete candidat+offre, 5 providers IA avec priorite, API France Travail, filtres avances, analytics, ideal recruteurs/agences/RH. Les deux incluent 2 mois d'essai gratuits et le moteur Jokil pre-entraine.</p>
+      </div>
+
+      <div style="background: white; padding: 2rem; border-radius: 15px; margin-bottom: 1.5rem; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+        <h3 style="margin-bottom: 1rem; color: var(--text-dark);">Comment fonctionnent les 2 mois gratuits ?</h3>
+        <p style="color: var(--text-light); line-height: 1.8; margin: 0;">Lors de votre inscription (Candidat ou Entreprise), vous beneficiez de <strong>2 mois d'essai complets sans engagement</strong>. Aucun paiement requis pendant ces 2 mois. A la fin de la periode d'essai, l'abonnement demarre automatiquement sauf si vous annulez. Vous pouvez annuler a tout moment pendant l'essai sans frais.</p>
+      </div>
+
+      <div style="background: white; padding: 2rem; border-radius: 15px; margin-bottom: 1.5rem; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+        <h3 style="margin-bottom: 1rem; color: var(--text-dark);">Puis-je changer de plan en cours d'abonnement ?</h3>
+        <p style="color: var(--text-light); line-height: 1.8; margin: 0;">Oui, a tout moment. Vous pouvez passer de Candidat a Entreprise (upgrade) ou demander un plan Sur Mesure. Toutes vos donnees (candidats, offres, matchings, historique ML) sont conservees lors du changement. Le nouveau tarif s'applique au prochain cycle de facturation. Contactez-nous via le formulaire de contact pour effectuer le changement.</p>
+      </div>
+
+      <div style="background: white; padding: 2rem; border-radius: 15px; margin-bottom: 1.5rem; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+        <h3 style="margin-bottom: 1rem; color: var(--text-dark);">Qu'inclut le plan Entreprise Sur Mesure ?</h3>
+        <p style="color: var(--text-light); line-height: 1.8; margin: 0;">Tout du plan Entreprise + import automatise Indeed/LinkedIn, connecteurs API personnalises, workflow sur mesure, formation equipe RH, support dedie 24/7, SLA garanti, deploiement multi-sites, personnalisation interface, integration ATS/SIRH. Tarif sur devis selon vos besoins. Contactez-nous pour une etude personnalisee.</p>
+      </div>
+    </div>
+
+    <!-- Utilisation & Fonctionnalites -->
+    <div style="margin-bottom: 4rem;">
+      <h2 style="color: var(--primary-purple); border-bottom: 3px solid var(--primary-purple); padding-bottom: 1rem; margin-bottom: 2rem;">Utilisation & Fonctionnalites</h2>
+
+      <div style="background: white; padding: 2rem; border-radius: 15px; margin-bottom: 1.5rem; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+        <h3 style="margin-bottom: 1rem; color: var(--text-dark);">Comment fonctionne le parsing CV ?</h3>
+        <p style="color: var(--text-light); line-height: 1.8; margin: 0;">Importez un CV (PDF, DOCX ou image). MatchPro IA extrait automatiquement: nom, email, telephone, adresse, experiences professionnelles, competences techniques et soft skills, formations, diplomes, langues, permis, vehicule. Pour les images, un OCR Tesseract extrait d'abord le texte. L'IA structuree (provider choisi ou Ollama) parse ensuite le texte en donnees exploitables. Le profil est automatiquement enrichi par l'analyse Joskil (seniorite, metier, employabilite).</p>
+      </div>
+
+      <div style="background: white; padding: 2rem; border-radius: 15px; margin-bottom: 1.5rem; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+        <h3 style="margin-bottom: 1rem; color: var(--text-dark);">Qu'est-ce que l'analyse Joskil d'un candidat ?</h3>
+        <p style="color: var(--text-light); line-height: 1.8; margin: 0;">Lors de l'import CV, Joskil analyse automatiquement: <strong>Niveau de seniorite</strong> (Junior/Confirme/Senior/Expert), <strong>Secteur dominant</strong> (IT, commerce, sante, etc.), <strong>Metier principal</strong> via dictionnaire Jokil, <strong>Score d'employabilite</strong> (base sur competences, stabilite, polyvalence), <strong>Stabilite du parcours</strong> (stable/mobile/transition), <strong>Recommandations</strong> de types d'offres a cibler. Ces infos enrichissent le profil et optimisent les matchings.</p>
+      </div>
+
+      <div style="background: white; padding: 2rem; border-radius: 15px; margin-bottom: 1.5rem; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+        <h3 style="margin-bottom: 1rem; color: var(--text-dark);">Qu'est-ce que l'analyse Joskil d'une offre ?</h3>
+        <p style="color: var(--text-light); line-height: 1.8; margin: 0;">Lors de la creation d'une offre, Joskil extrait automatiquement depuis la description: <strong>Remuneration</strong> (min/max, brut/net, periode), <strong>Teletravail</strong> (jours/semaine, %, full remote), <strong>Avantages</strong> (tickets resto, mutuelle, 13e mois, primes, etc.), <strong>Competences</strong> requises (techniques + soft skills, niveaux, obligatoires), <strong>Experience</strong> (annees min/max, diplomes), <strong>Details poste</strong> (urgence, taille equipe, management, horaires, deplacements), <strong>Langues</strong> requises. Ces infos structurees ameliorent la precision des matchings.</p>
+      </div>
+
+      <div style="background: white; padding: 2rem; border-radius: 15px; margin-bottom: 1.5rem; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+        <h3 style="margin-bottom: 1rem; color: var(--text-dark);">Comment interpreter les scores de matching ?</h3>
+        <p style="color: var(--text-light); line-height: 1.8; margin: 0;">Chaque matching affiche 4 scores: <strong>Score global (0-100%)</strong> = moyenne ponderee (40% semantique + 40% regles + 20% ML), <strong>Score semantique</strong> = similarite NLP entre profil et offre, <strong>Score regles</strong> = competences matchees, experience, distance, teletravail, <strong>Score ML Jokil</strong> = prediction XGBoost de reussite. Un score global >85% = excellent match, >70% = bon match, >50% = match correct, <50% = faible. Vous pouvez filtrer par score minimum.</p>
+      </div>
+
+      <div style="background: white; padding: 2rem; border-radius: 15px; margin-bottom: 1.5rem; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+        <h3 style="margin-bottom: 1rem; color: var(--text-dark);">Difference entre matching candidat→offre et offre→candidat ?</h3>
+        <p style="color: var(--text-light); line-height: 1.8; margin: 0;"><strong>Candidat → Offre:</strong> Vous selectionnez un candidat et MatchPro IA trouve les meilleures offres pour ce profil. Ideal pour recherche d'emploi ou placement. <strong>Offre → Candidat:</strong> Vous selectionnez une offre et MatchPro IA trouve les meilleurs candidats pour ce poste. Ideal pour recrutement. Dans les deux cas, l'algorithme est identique (semantique + regles + ML). Seul le point de depart change.</p>
+      </div>
+
+      <div style="background: white; padding: 2rem; border-radius: 15px; margin-bottom: 1.5rem; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+        <h3 style="margin-bottom: 1rem; color: var(--text-dark);">Puis-je exporter les resultats de matching ?</h3>
+        <p style="color: var(--text-light); line-height: 1.8; margin: 0;">Oui. Tous les matchings peuvent etre exportes en CSV avec details complets: scores (global, semantique, regles, ML), competences matchees, distance, disponibilite, etc. Bouton "Export CSV" disponible sur la page resultats. Ideal pour analyses RH externes, rapports, ou import dans votre ATS.</p>
+      </div>
+    </div>
+
+    <!-- Support & Contact -->
+    <div style="margin-bottom: 2rem;">
+      <h2 style="color: var(--primary-blue); border-bottom: 3px solid var(--primary-blue); padding-bottom: 1rem; margin-bottom: 2rem;">Support & Contact</h2>
+
+      <div style="background: white; padding: 2rem; border-radius: 15px; margin-bottom: 1.5rem; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+        <h3 style="margin-bottom: 1rem; color: var(--text-dark);">Comment contacter le support ?</h3>
+        <p style="color: var(--text-light); line-height: 1.8; margin: 0;">Email: <a href="mailto:contact@matchpro-ia.com" style="color: var(--primary-purple);">contact@matchpro-ia.com</a><br>Formulaire de contact: <a href="contact.html" style="color: var(--primary-purple);">Cliquez ici</a><br>Documentation technique: <a href="test-web-published/home.html" style="color: var(--primary-purple);">Documentation complete</a><br>Horaires: Lun-Ven 9h-18h. <strong>Plan Entreprise:</strong> Support prioritaire. <strong>Plan Sur Mesure:</strong> Support dedie 24/7.</p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <h2>D'autres questions ?</h2>
+    <p>Contactez-nous ou consultez la documentation complete</p>
+    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+      <a href="contact.html" class="btn btn-primary">Nous contacter</a>
+      <a href="test-web-published/home.html" class="btn btn-secondary">Documentation</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h4>MatchPro IA</h4>
+        <p style="color: rgba(255,255,255,0.7);">Solution de recrutement intelligente propulsee par l'IA.</p>
+      </div>
+      <div class="footer-section">
+        <h4>Liens Rapides</h4>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="features.html">Fonctionnalites</a></li>
+          <li><a href="pricing.html">Tarifs</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Ressources</h4>
+        <ul>
+          <li><a href="test-web-published/home.html">Documentation</a></li>
+          <li><a href="test-web-published/docs/index.html">API Reference</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="cgv.html">CGV</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>VIEY DAVID - MatchPro IA v2.0.0 - 2025. Tous droits reserves.</p>
+    </div>
+  </footer>
+</body>
+</html>
