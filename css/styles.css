@@ -706,4 +706,142 @@ body {
   .pricing-card.featured {
     transform: scale(1);
   }
+
+  .adaptive-learning-badge {
+    padding: 2rem 1rem;
+  }
+
+  .badge-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .badge-icon {
+    margin-bottom: 1rem;
+  }
+
+  .badge-content {
+    margin-bottom: 1.5rem;
+  }
+
+  .badge-stats {
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .badge-stat-value {
+    font-size: 1.5rem;
+  }
+
+  .badge-arrow {
+    display: none;
+  }
+}
+
+/* Adaptive Learning Badge Section */
+.adaptive-learning-badge {
+  padding: 3rem 2rem;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%);
+  border-top: 2px solid rgba(102, 126, 234, 0.2);
+  border-bottom: 2px solid rgba(102, 126, 234, 0.2);
+}
+
+.badge-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.15);
+  border: 2px solid rgba(102, 126, 234, 0.2);
+}
+
+.badge-icon {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.badge-icon svg {
+  color: white;
+}
+
+.badge-content {
+  flex: 1;
+}
+
+.badge-content h3 {
+  font-size: 1.3rem;
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.badge-content p {
+  font-size: 0.95rem;
+  color: var(--text-light);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.badge-stats {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+.badge-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: rgba(102, 126, 234, 0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(102, 126, 234, 0.2);
+  min-width: 70px;
+}
+
+.badge-stat.highlight {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15));
+  border: 2px solid var(--primary-purple);
+  box-shadow: 0 2px 8px rgba(118, 75, 162, 0.2);
+}
+
+.badge-stat-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+
+.badge-stat-label {
+  font-size: 0.75rem;
+  color: var(--text-light);
+  margin-top: 0.25rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge-arrow {
+  color: var(--primary-purple);
+  font-size: 1.5rem;
+  font-weight: 700;
+  opacity: 0.5;
 }
