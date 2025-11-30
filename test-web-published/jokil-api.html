@@ -127,14 +127,14 @@
         <ul class="feature-list">
           <li><strong>v1.0:</strong> Matching basique (compétences + expérience)</li>
           <li><strong>v2.0:</strong> Ajout analyse sémantique (Sentence-BERT)</li>
-          <li><strong>v3.0 (Jokil):</strong> Intégration complète ML XGBoost + Analyse intelligente Joskil</li>
+          <li><strong>v3.0 (Jokil):</strong> Intégration complète ML XGBoost + Analyse enrichie</li>
         </ul>
         <p style="margin-top: 1rem;"><strong>Nouveautés v3.0.0:</strong></p>
         <ul class="feature-list">
           <li>Modèle XGBoost pré-entraîné sur <strong>10000+ matchings réels</strong></li>
           <li>16 features analysées (vs 8 en v2.0)</li>
-          <li>Analyse enrichie candidat (Joskil) : séniorité, métier, employabilité</li>
-          <li>Analyse enrichie offre (Joskil) : salaire, télétravail, avantages</li>
+          <li>Analyse enrichie candidat : séniorité, métier, employabilité</li>
+          <li>Analyse enrichie offre : salaire, télétravail, avantages</li>
           <li>Dictionnaire métiers avec compatibilité inter-métiers</li>
           <li>Apprentissage continu via feedback utilisateurs</li>
           <li>Confiance prédictive 85%+ (vs 70% en v2.0)</li>
@@ -260,7 +260,7 @@ Re-entraînement: Automatique via feedbacks utilisateurs</code></pre>
         </tr>
       </table>
 
-      <h3>Analyse Intelligente (Joskil)</h3>
+      <h3>Analyse Enrichie</h3>
       <table>
         <tr>
           <th>Endpoint</th>
@@ -382,7 +382,7 @@ Re-entraînement: Automatique via feedbacks utilisateurs</code></pre>
 
     <!-- Exemple Analyse Candidat -->
     <div class="section">
-      <h2>Exemple: Endpoint /analyze-candidat (Joskil)</h2>
+      <h2>Exemple: Endpoint /analyze-candidat</h2>
 
       <h3>Requête</h3>
       <pre><code>{
